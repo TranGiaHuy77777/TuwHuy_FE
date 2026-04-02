@@ -4,6 +4,7 @@ import clientLogo from './assets/client-logo.svg';
 import UiIcon from './components/icons/UiIcon';
 import CaseStudyPanel from './components/panels/CaseStudyPanel';
 import AccountPanel from './components/panels/AccountPanel';
+import ControlPanel from './components/panels/ControlPanel';
 import AdminPanel from './components/panels/AdminPanel';
 import OverviewPanel from './components/panels/OverviewPanel';
 import OrderDepositPanel from './components/panels/OrderDepositPanel';
@@ -145,6 +146,10 @@ function App() {
 
     if (action === 'account-info') {
       setActiveTab('account');
+    }
+
+    if (action === 'control-panel') {
+      setActiveTab('control-panel');
     }
 
     if (action === 'top-up') {
@@ -458,6 +463,7 @@ function App() {
             {!trimmedSearchQuery && activeTab === 'service-detail' && selectedServiceItem && <ServiceDetailPanel selectedServiceItem={selectedServiceItem} onNavigateToPayment={handleNavigateToPayment} onBack={() => handleBackToServices(selectedServiceItem.sectionId)} />}
             {!trimmedSearchQuery && activeTab === 'platforms' && <PlatformsPanel highlightedId={highlightedResultId} />}
             {!trimmedSearchQuery && activeTab === 'case-study' && <CaseStudyPanel highlightedId={highlightedResultId} />}
+            {!trimmedSearchQuery && activeTab === 'control-panel' && <ControlPanel authUser={authUser} onNavigate={setActiveTab} />}
             {!trimmedSearchQuery && activeTab === 'payment' && <OrderDepositPanel authUser={authUser} orderDraft={pendingOrderDraft} onClearDraft={() => setPendingOrderDraft(null)} />}
             {!trimmedSearchQuery && activeTab === 'account' && <AccountPanel authUser={authUser} onAuthChange={handleAuthChange} onLogout={handleLogout} />}
             {!trimmedSearchQuery && activeTab === 'admin' && <AdminPanel authUser={authUser} />}

@@ -4,6 +4,7 @@ import { apiRequest, setAuthToken } from '../../services/api';
 function AccountPanel({ authUser, onAuthChange, onLogout }) {
   const [mode, setMode] = useState('login');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ function AccountPanel({ authUser, onAuthChange, onLogout }) {
 
     try {
       const endpoint = mode === 'register' ? '/api/auth/register' : '/api/auth/login';
-      const payload = mode === 'register' ? { fullName, email, password } : { email, password };
+      const payload = mode === 'register' ? { fullName, phone, email, password } : { email, password };
       const result = await apiRequest(endpoint, {
         method: 'POST',
         body: JSON.stringify(payload),
@@ -48,7 +49,7 @@ function AccountPanel({ authUser, onAuthChange, onLogout }) {
 
       if (mode === 'login') {
         setAuthToken(result.token);
-        const profile = await apiRequest('/api/auth/me', { token: result.token });
+        const profile = result.user || (await apiRequest('/api/auth/me', { token: result.token }));
         onAuthChange?.({ ...profile, token: result.token });
       } else {
         setMessage('Tạo tài khoản thành công. Hãy đăng nhập.');
@@ -87,6 +88,13 @@ function AccountPanel({ authUser, onAuthChange, onLogout }) {
             <div className="comment-boost-field">
               <label className="package-option-label">Họ tên</label>
               <input className="quantity-input" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+            </div>
+          ) : null}
+
+          {mode === 'register' ? (
+            <div className="comment-boost-field">
+              <label className="package-option-label">Số điện thoại</label>
+              <input className="quantity-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
           ) : null}
 

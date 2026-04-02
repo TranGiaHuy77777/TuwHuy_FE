@@ -674,33 +674,60 @@ export const serviceCatalogSections = [
 export const otherFunctionLinks = [
   {
     id: 'other-support-contact',
-    label: 'Liên hệ hỗ trợ',
+    label: 'Contact support',
     color: '#78a95d',
     softColor: '#c4e28f',
   },
   {
     id: 'other-tiktok-link',
-    label: 'Link Tạo Hoàn Tín TikTok',
+    label: 'Link to Create TikTok Credit',
     color: '#31b6ad',
     softColor: '#9bf2d7',
   },
   {
     id: 'other-facebook-via',
-    label: 'Web Mua Via, Clone, BM Facebook',
+    label: 'Facebook via / clone marketplace',
     color: '#3b82f6',
     softColor: '#89b7ff',
   },
   {
     id: 'other-terms',
-    label: 'Điều khoản dịch vụ',
+    label: 'Terms of Service',
     color: '#00838f',
     softColor: '#7fd7df',
   },
   {
     id: 'other-api-docs',
-    label: 'Tài liệu kết nối API',
+    label: 'API connection documentation',
     color: '#f4b83b',
     softColor: '#ffe08b',
+  },
+];
+
+export const controlPanelActions = [
+  {
+    id: 'control-services',
+    title: 'Service price list',
+    description: 'Mở danh sách dịch vụ, chọn nền tảng và xem giá gói.',
+    action: 'services',
+  },
+  {
+    id: 'control-orders',
+    title: 'Order management',
+    description: 'Theo dõi đơn đã tạo, trạng thái chạy và thông tin thanh toán.',
+    action: 'account',
+  },
+  {
+    id: 'control-gift-code',
+    title: 'Enter gift code',
+    description: 'Khu vực tạm cho mã khuyến mãi, giữ đúng vị trí như web gốc.',
+    action: 'account',
+  },
+  {
+    id: 'control-admin',
+    title: 'Administrator',
+    description: 'Duyệt nạp tiền, xem đơn partner và quản lý user.',
+    action: 'admin',
   },
 ];
 
@@ -829,6 +856,18 @@ export const tabs = [
     ],
   },
   {
+    id: 'control-panel',
+    label: 'Control panel',
+    icon: 'settings',
+    eyebrow: 'Dashboard shortcuts',
+    title: 'Bảng điều khiển nhanh cho dịch vụ, đơn hàng và gift code',
+    stats: [
+      { label: 'Service price list', value: 'Open' },
+      { label: 'Order management', value: 'Open' },
+      { label: 'Gift code', value: 'Ready' },
+    ],
+  },
+  {
     id: 'account',
     label: 'Tài khoản',
     icon: 'account',
@@ -855,6 +894,7 @@ export const tabs = [
 ];
 
 export const sidebarUserLinks = [
+  { id: 'user-control-panel', label: 'Control panel', icon: 'settings', action: 'control-panel' },
   { id: 'user-account', label: 'Thông tin tài khoản', icon: 'account', action: 'account-info' },
   { id: 'user-topup', label: 'Nạp tiền', icon: 'wallet', action: 'top-up', badge: '0đ' },
   { id: 'user-admin', label: 'Quản trị hệ thống', icon: 'settings', action: 'admin-panel' },

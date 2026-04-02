@@ -205,14 +205,76 @@ body[data-theme='dark'] .site-footer {
   box-shadow: var(--shadow);
 }
 
-.sidebar {
+.control-panel {
   display: grid;
-  align-content: start;
   gap: 18px;
-  padding: 20px;
-  border-radius: 30px;
-  align-self: stretch;
 }
+
+.control-panel-banner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(24, 119, 242, 0.14), rgba(8, 131, 143, 0.12));
+  border: 1px solid rgba(25, 70, 108, 0.12);
+}
+
+.control-panel-banner > div {
+  display: grid;
+  gap: 6px;
+}
+
+.control-panel-banner__eyebrow {
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.control-panel-banner strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+}
+
+.control-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.control-panel-grid--split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.control-action-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  display: grid;
+  gap: 10px;
+}
+
+.control-action-card__title {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.control-action-card__description {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.control-gift-form {
+  display: grid;
+  gap: 12px;
+}
+
 
 .sidebar-scroll {
   display: grid;
@@ -2499,6 +2561,12 @@ body[data-theme='dark'] .pricing-notice-box {
 
   .workspace-header__actions {
     justify-content: flex-start;
+  }
+
+  .control-panel-banner,
+  .control-panel-grid,
+  .control-panel-grid--split {
+    grid-template-columns: 1fr;
   }
 
   .search-box {
