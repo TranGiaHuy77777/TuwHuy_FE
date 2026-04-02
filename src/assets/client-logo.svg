@@ -1,0 +1,25 @@
+﻿<svg width="720" height="560" viewBox="0 0 720 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueDeep" x1="153" y1="86" x2="551" y2="443" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D69B4"/>
+      <stop offset="1" stop-color="#12345E"/>
+    </linearGradient>
+    <linearGradient id="blueSoft" x1="189" y1="130" x2="567" y2="486" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63B6EA"/>
+      <stop offset="1" stop-color="#1F5B95"/>
+    </linearGradient>
+    <filter id="shadow" x="86" y="52" width="548" height="456" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#153A63" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M250 206L310 150V278H250V206Z" fill="url(#blueSoft)"/>
+    <path d="M333 166L394 108V320H333V166Z" fill="url(#blueDeep)"/>
+    <path d="M415 130L478 70V262L415 322V130Z" fill="url(#blueDeep)"/>
+    <path d="M333 341L516 167L547 181L355 370H323L333 341Z" fill="url(#blueSoft)"/>
+    <path d="M541 175L607 156L578 220L541 175Z" fill="url(#blueSoft)"/>
+    <text x="150" y="391" fill="url(#blueDeep)" font-family="Segoe UI, Arial, sans-serif" font-size="164" font-weight="900" letter-spacing="-8">THB</text>
+    <text x="132" y="493" fill="url(#blueSoft)" font-family="Segoe UI, Arial, sans-serif" font-size="104" font-weight="800" letter-spacing="-3">Tu Huy</text>
+    <text x="154" y="538" fill="#35597B" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="2.8">BUSINESS &amp; CONSULTANCY</text>
+  </g>
+</svg>
