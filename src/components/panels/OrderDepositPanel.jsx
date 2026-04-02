@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { apiRequest } from '../../services/api';
+import paymentQrImage from '../../assets/c615f654-61e1-437b-acd9-17e3543f83d8.jpg';
+import { paymentInfo } from '../../data/appData';
 
 function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
   const [quote, setQuote] = useState(null);
@@ -119,11 +121,15 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
         </article>
 
         <article className="payment-card payment-card--qr">
+          <div className="payment-qr-frame">
+            <img className="payment-qr-image" src={paymentQrImage} alt={`Mã QR chuyển khoản ${paymentInfo.bank}`} />
+          </div>
+
           <div className="payment-qr-caption">
-            <p><strong>Chủ tài khoản:</strong> TRAN GIA HUY</p>
-            <p><strong>Số tài khoản:</strong> [78761258888]</p>
-            <p><strong>Ngân hàng:</strong> [TP BANK]</p>
-            <p><strong>Nội dung chuyển khoản:</strong> NAP [TEN_NGUOI_CHUYEN_KHOAN]</p>
+            <p><strong>Chủ tài khoản:</strong> {paymentInfo.accountName}</p>
+            <p><strong>Số tài khoản:</strong> [{paymentInfo.accountNumber}]</p>
+            <p><strong>Ngân hàng:</strong> [{paymentInfo.bank}]</p>
+            <p><strong>Nội dung chuyển khoản:</strong> {paymentInfo.transferContent}</p>
           </div>
         </article>
       </div>
