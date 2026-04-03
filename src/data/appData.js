@@ -471,6 +471,21 @@ export const servicePackages = {
   'bigo-live-eyes': [
     { id: 'sv1-bigo-live', name: 'SV1 - Mắt Live Bigo 15 phút', price: 0, note: '', badge: '' },
   ],
+  'threads-like': [
+    { id: 'sv1-threads-like', name: 'SV1 - Threads Likes', price: 0, note: '', badge: '' },
+  ],
+  'threads-follow': [
+    { id: 'sv1-threads-follow', name: 'SV1 - Threads Follow | Người dùng thật', price: 0, note: '', badge: '' },
+    { id: 'sv2-threads-follow', name: 'SV2 - Threads Follow | Người dùng thật', price: 0, note: '', badge: '' },
+    { id: 'sv3-threads-follow', name: 'SV3 - Threads Follow | Người dùng thật', price: 0, note: '', badge: '' },
+  ],
+  'threads-comment': [
+    { id: 'sv1-threads-comment', name: 'SV1 - Threads Comment', price: 0, note: '', badge: '' },
+  ],
+  'threads-share': [
+    { id: 'sv1-threads-share', name: 'SV1 - Threads Reshares [Refill: 30D] [Max: 50K]', price: 0, note: '', badge: '' },
+    { id: 'sv2-threads-share', name: 'SV2 - Threads Reshare [Refill: 30D] [Max: 5K]', price: 0, note: '', badge: '' },
+  ],
   'youtube-views': [
     { id: 'sv1-yt-view', name: 'SV1 - Youtube view (Có tính thời lượng xem)', price: 0, note: '', badge: '' },
     { id: 'sv2-yt-view', name: 'SV2 - View youtube', price: 0, note: '', badge: '' },

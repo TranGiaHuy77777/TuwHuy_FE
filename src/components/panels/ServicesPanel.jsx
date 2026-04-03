@@ -77,7 +77,6 @@ const otherFunctionIconMap = {
   'other-tiktok-link': FaLink,
   'other-facebook-via': FaFacebookF,
   'other-terms': FaFileContract,
-  'other-api-docs': FaBookOpen,
 };
 
 const tiktokNoticeMap = {
@@ -413,6 +412,10 @@ function isBigoFunction(itemId = '') {
   return itemId === 'bigo-live-eyes';
 }
 
+function isThreadsFunction(itemId = '') {
+  return itemId.startsWith('threads-');
+}
+
 function isYouTubeFunction(itemId = '') {
   return itemId.startsWith('youtube-');
 }
@@ -534,6 +537,7 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
   const isTikTokItem = isTikTokFunction(activeItemId);
   const isBigoItem = isBigoFunction(activeItemId);
   const bigoNotices = bigoNoticeMap[activeItemId] || [];
+  const isThreadsItem = isThreadsFunction(activeItemId);
   const isYouTubeItem = isYouTubeFunction(activeItemId);
   const youtubeNotices = youtubeNoticeMap[activeItemId] || [];
   const isShopeeItem = isShopeeFunction(activeItemId);
@@ -654,6 +658,18 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
                                 ))}
                               </ul>
                             </div>
+                          ) : isThreadsItem ? (
+                            <div className="service-policy-note" role="note" aria-label="Lưu ý điều khoản dịch vụ Threads">
+                              <p className="service-policy-title">Lưu ý</p>
+                              <ul className="service-policy-list">
+                                <li>CẦN MỞ CÔNG KHAI BÀI ĐĂNG</li>
+                                <li>LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)</li>
+                                <li>Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.</li>
+                                <li>Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.</li>
+                                <li>Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.</li>
+                                <li>Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.</li>
+                              </ul>
+                            </div>
                           ) : isYouTubeItem ? (
                             <div className="service-policy-note service-policy-note--soft" role="note" aria-label="Lưu ý điều khoản dịch vụ Youtube">
                               <p className="service-policy-title">Lưu ý</p>
@@ -704,7 +720,7 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
                           )}
                         </div>
                         <div className="service-package-options">
-                          {!isTikTokItem && !isBigoItem && !isYouTubeItem && !isShopeeItem && !isGoogleItem && !isWebTrafficItem ? (
+                          {!isTikTokItem && !isBigoItem && !isThreadsItem && !isYouTubeItem && !isShopeeItem && !isGoogleItem && !isWebTrafficItem ? (
                             <div className="package-option-group">
                               <label className="package-option-label">Cấm xúc</label>
                               <div className="emotion-buttons">
@@ -719,7 +735,7 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
                             </div>
                           ) : null}
 
-                          {activeItemId === 'tiktok-comment' || activeItemId === 'youtube-comments' || activeItemId === 'youtube-comments-ai' || activeItemId === 'google-review-map' ? (
+                          {activeItemId === 'tiktok-comment' || activeItemId === 'threads-comment' || activeItemId === 'youtube-comments' || activeItemId === 'youtube-comments-ai' || activeItemId === 'google-review-map' ? (
                             <div className="package-option-group">
                               <label className="package-option-label">Bình luận : {commentText ? commentText.split('\n').filter(Boolean).length : 0} cmts</label>
                               <textarea
