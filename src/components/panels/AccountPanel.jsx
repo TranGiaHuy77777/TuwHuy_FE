@@ -41,7 +41,7 @@ function AccountPanel({ authUser, onLogout }) {
         </div>
 
         <div className="comment-boost-card">
-          <p className="quantity-note">Vui lòng Đăng nhập / Đăng kí</p>
+          <p className="quantity-note">Vui lòng Đăng nhậpppp / Đăng kí</p>
         </div>
       </section>
     );
