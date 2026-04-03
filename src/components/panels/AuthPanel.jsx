@@ -44,7 +44,7 @@ function AuthPanel({ mode = 'login', onModeChange, onAuthChange }) {
   return (
     <section className="panel-screen service-detail-panel auth-panel-shell">
       <div className="panel-heading">
-        <p className="panel-label">Authentication</p>
+        <p className="panel-label">Authenticationsss</p>
         <h2>{isRegister ? 'Đăng ký tài khoản' : isAdminLogin ? 'Đăng nhập quản trị' : 'Đăng nhập tài khoản'}</h2>
         <p className="auth-panel-lead">
           {isRegister
