@@ -5,7 +5,8 @@ import { paymentInfo } from '../../data/appData';
 
 function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
   const defaultTransferContent = authUser?.depositCode ? `NAP ${authUser.depositCode}` : paymentInfo.transferContent;
-  const [qrSrc, setQrSrc] = useState('/payment-qr.jpg');
+  const [qrSrc, setQrSrc] = useState(paymentQrImage);
+  const [qrFallbackTried, setQrFallbackTried] = useState(false);
   const [quote, setQuote] = useState(null);
   const [depositAmount, setDepositAmount] = useState('');
   const [transferContent, setTransferContent] = useState(defaultTransferContent);
@@ -147,16 +148,23 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
 
         <article className="payment-card payment-card--qr">
           <div className="payment-qr-frame">
-            <img
-              className="payment-qr-image"
-              src={qrSrc}
-              alt={`Mã QR chuyển khoản ${paymentInfo.bank}`}
-              onError={() => {
-                if (qrSrc !== paymentQrImage) {
-                  setQrSrc(paymentQrImage);
-                }
-              }}
-            />
+            {qrSrc ? (
+              <img
+                className="payment-qr-image"
+                src={qrSrc}
+                alt={`Mã QR chuyển khoản ${paymentInfo.bank}`}
+                onError={() => {
+                  if (!qrFallbackTried) {
+                    setQrFallbackTried(true);
+                    setQrSrc('/payment-qr.jpg');
+                    return;
+                  }
+                  setQrSrc('');
+                }}
+              />
+            ) : (
+              <p className="quantity-note">Không tải được mã QR. Vui lòng kiểm tra lại file ảnh.</p>
+            )}
           </div>
 
           <div className="payment-qr-caption">
