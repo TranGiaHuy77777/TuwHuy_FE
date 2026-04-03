@@ -53,11 +53,6 @@ export const contactSupportLinks = [
     href: 'https://www.facebook.com/tu.ma.huy.540893',
   },
   {
-    id: 'contact-telegram',
-    label: 'Telegram',
-    href: 'https://t.me/tuhuy', // Update with actual Telegram link
-  },
-  {
     id: 'contact-zalo',
     label: 'Zalo Url',
     href: homeSummary.contactHref,
