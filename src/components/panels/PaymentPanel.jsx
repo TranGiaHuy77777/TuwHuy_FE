@@ -1,4 +1,4 @@
-import paymentQrImage from '../../assets/c615f654-61e1-437b-acd9-17e3543f83d8.jpg';
+import paymentQrImage from '../../assets/payment-qr.jpg';
 import { paymentInfo } from '../../data/appData';
 
 function PaymentPanel() {

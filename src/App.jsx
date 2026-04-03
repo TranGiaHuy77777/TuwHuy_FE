@@ -4,6 +4,7 @@ import clientLogo from './assets/client-logo.svg';
 import UiIcon from './components/icons/UiIcon';
 import CaseStudyPanel from './components/panels/CaseStudyPanel';
 import AccountPanel from './components/panels/AccountPanel';
+import AuthPanel from './components/panels/AuthPanel';
 import ControlPanel from './components/panels/ControlPanel';
 import AdminPanel from './components/panels/AdminPanel';
 import OverviewPanel from './components/panels/OverviewPanel';
@@ -32,8 +33,31 @@ function getInitialTheme() {
   return window.localStorage.getItem(themeStorageKey) === 'dark' ? 'dark' : 'light';
 }
 
+function getAuthModeFromPath(pathname = '') {
+  const normalizedPath = pathname.toLowerCase();
+  if (normalizedPath === '/login') return 'login';
+  if (normalizedPath === '/register') return 'register';
+  if (normalizedPath === '/adminlogin') return 'admin';
+  return '';
+}
+
+function getInitialAuthRouteState() {
+  if (typeof window === 'undefined') {
+    return { activeTab: 'services', authMode: 'login' };
+  }
+
+  const routeAuthMode = getAuthModeFromPath(window.location.pathname);
+  if (routeAuthMode) {
+    return { activeTab: 'auth', authMode: routeAuthMode };
+  }
+
+  return { activeTab: 'services', authMode: 'login' };
+}
+
 function App() {
-  const [activeTab, setActiveTab] = useState('services');
+  const initialAuthRouteState = getInitialAuthRouteState();
+  const [activeTab, setActiveTab] = useState(initialAuthRouteState.activeTab);
+  const [authMode, setAuthMode] = useState(initialAuthRouteState.authMode);
   const [searchQuery, setSearchQuery] = useState('');
   const [highlightedResultId, setHighlightedResultId] = useState('');
   const [theme, setTheme] = useState(getInitialTheme);
@@ -47,9 +71,36 @@ function App() {
 
   const trimmedSearchQuery = searchQuery.trim();
   const searchResults = trimmedSearchQuery ? getSearchResults(trimmedSearchQuery) : [];
-  const activeMeta = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+  const activeMeta = tabs.find((tab) => tab.id === activeTab) ?? {
+    eyebrow: 'Authentication',
+    title: 'Đăng nhập / đăng ký',
+    stats: [
+      { label: 'Chế độ', value: authMode === 'admin' ? 'Admin login' : authMode === 'register' ? 'Đăng ký' : 'Đăng nhập' },
+      { label: 'Endpoint', value: authMode === 'admin' ? '/adminlogin' : authMode === 'register' ? '/register' : '/login' },
+      { label: 'Trạng thái', value: 'Ready' },
+    ],
+  };
   const sidebarTabs = tabs.filter((tab) => tab.id !== 'services');
   const isDarkTheme = theme === 'dark';
+
+  function updateAuthPath(mode, replace = false) {
+    if (typeof window === 'undefined') return;
+
+    const nextPath = mode === 'register' ? '/register' : mode === 'admin' ? '/adminlogin' : '/login';
+    if (window.location.pathname === nextPath) return;
+
+    if (replace) {
+      window.history.replaceState({}, '', nextPath);
+    } else {
+      window.history.pushState({}, '', nextPath);
+    }
+  }
+
+  function clearAuthPath() {
+    if (typeof window === 'undefined') return;
+    if (!getAuthModeFromPath(window.location.pathname)) return;
+    window.history.replaceState({}, '', '/');
+  }
 
   useEffect(() => {
     document.body.dataset.theme = theme;
@@ -98,10 +149,46 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    function handlePopState() {
+      const routeAuthMode = getAuthModeFromPath(window.location.pathname);
+      if (!routeAuthMode) return;
+
+      setAuthMode(routeAuthMode);
+      setActiveTab('auth');
+      setSearchQuery('');
+      setHighlightedResultId('');
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   function handleTabChange(tabId) {
+    if (tabId === 'admin' && !authUser) {
+      openAuthScreen('admin');
+      return;
+    }
+
+    clearAuthPath();
     setActiveTab(tabId);
     setSearchQuery('');
     setHighlightedResultId('');
+  }
+
+  function handleAuthModeChange(mode = 'login') {
+    setAuthMode(mode);
+    setActiveTab('auth');
+    setSearchQuery('');
+    setHighlightedResultId('');
+    setIsSettingsMenuOpen(false);
+    updateAuthPath(mode);
+  }
+
+  function openAuthScreen(mode = 'login') {
+    handleAuthModeChange(mode);
   }
 
   function handleSearchChange(event) {
@@ -145,7 +232,8 @@ function App() {
     }
 
     if (action === 'account-info') {
-      setActiveTab('account');
+      if (authUser) setActiveTab('account');
+      else openAuthScreen('login');
     }
 
     if (action === 'control-panel') {
@@ -158,7 +246,8 @@ function App() {
     }
 
     if (action === 'admin-panel') {
-      setActiveTab('admin');
+      if (authUser?.role === 'admin') setActiveTab('admin');
+      else openAuthScreen('admin');
     }
 
     if (action === 'logout') {
@@ -178,12 +267,14 @@ function App() {
   }
 
   function handleOpenResult(result) {
+    clearAuthPath();
     setActiveTab(result.tabId);
     setSearchQuery('');
     setHighlightedResultId(result.highlightId ?? '');
   }
 
   function handleSelectServiceItem(itemId, sectionId) {
+    clearAuthPath();
     setSelectedServiceItem({ itemId, sectionId });
     setActiveTab('service-detail');
     setSearchQuery('');
@@ -191,12 +282,14 @@ function App() {
   }
 
   function handleNavigateToPayment(orderDraft = null) {
+    clearAuthPath();
     setPendingOrderDraft(orderDraft);
     setActiveTab('payment');
     setSelectedServiceItem(null);
   }
 
   function handleBackToServices(sectionId = '') {
+    clearAuthPath();
     setActiveTab('services');
     if (sectionId) {
       setHighlightedResultId(sectionId);
@@ -207,11 +300,18 @@ function App() {
   function handleAuthChange(nextUser) {
     setAuthUser(nextUser);
     if (nextUser?.token) {
+      clearAuthPath();
       setAuthToken(nextUser.token);
+      if (authMode === 'admin' && nextUser.role === 'admin') {
+        setActiveTab('admin');
+      } else {
+        setActiveTab('account');
+      }
     }
   }
 
   function handleLogout() {
+    clearAuthPath();
     setAuthUser(null);
     setAuthToken('');
     setPendingOrderDraft(null);
@@ -348,7 +448,15 @@ function App() {
                 <UiIcon type="bell" />
               </button>
 
-              <div className="contacts-menu" ref={contactsMenuRef}>
+              {!authUser ? (
+                <div className="header-auth-group">
+                  <button type="button" className="header-auth-btn" onClick={() => openAuthScreen('login')}>Đăng nhập</button>
+                  <button type="button" className="header-auth-btn" onClick={() => openAuthScreen('register')}>Đăng ký</button>
+                </div>
+              ) : null}
+
+              {authUser ? (
+                <div className="contacts-menu" ref={contactsMenuRef}>
                 <button
                   type="button"
                   className={`icon-button ${isContactsMenuOpen ? 'is-active' : ''}`}
@@ -378,9 +486,11 @@ function App() {
                     ))}
                   </div>
                 ) : null}
-              </div>
+                </div>
+              ) : null}
 
-              <div className="settings-menu" ref={settingsMenuRef}>
+              {authUser ? (
+                <div className="settings-menu" ref={settingsMenuRef}>
                 <button
                   type="button"
                   className={`icon-button ${isSettingsMenuOpen ? 'is-active' : ''}`}
@@ -439,20 +549,23 @@ function App() {
                     </button>
                   </div>
                 ) : null}
-              </div>
+                </div>
+              ) : null}
 
-              <span className="profile-badge">Online</span>
+              {authUser ? <span className="profile-badge">Online</span> : null}
             </div>
           </header>
 
-          <section className="status-grid">
-            {activeMeta.stats.map((card) => (
-              <article className="status-card" key={card.label}>
-                <span>{card.label}</span>
-                <strong>{card.value}</strong>
-              </article>
-            ))}
-          </section>
+          {activeTab !== 'auth' ? (
+            <section className="status-grid">
+              {activeMeta.stats.map((card) => (
+                <article className="status-card" key={card.label}>
+                  <span>{card.label}</span>
+                  <strong>{card.value}</strong>
+                </article>
+              ))}
+            </section>
+          ) : null}
 
           <section className="workspace-body">
             {trimmedSearchQuery ? (
@@ -465,7 +578,8 @@ function App() {
             {!trimmedSearchQuery && activeTab === 'case-study' && <CaseStudyPanel highlightedId={highlightedResultId} />}
             {!trimmedSearchQuery && activeTab === 'control-panel' && <ControlPanel authUser={authUser} onNavigate={setActiveTab} />}
             {!trimmedSearchQuery && activeTab === 'payment' && <OrderDepositPanel authUser={authUser} orderDraft={pendingOrderDraft} onClearDraft={() => setPendingOrderDraft(null)} />}
-            {!trimmedSearchQuery && activeTab === 'account' && <AccountPanel authUser={authUser} onAuthChange={handleAuthChange} onLogout={handleLogout} />}
+            {!trimmedSearchQuery && activeTab === 'auth' && <AuthPanel mode={authMode} onModeChange={handleAuthModeChange} onAuthChange={handleAuthChange} />}
+            {!trimmedSearchQuery && activeTab === 'account' && <AccountPanel authUser={authUser} onLogout={handleLogout} />}
             {!trimmedSearchQuery && activeTab === 'admin' && <AdminPanel authUser={authUser} />}
           </section>
         </section>

@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { apiRequest } from '../../services/api';
-import paymentQrImage from '../../assets/c615f654-61e1-437b-acd9-17e3543f83d8.jpg';
+import paymentQrImage from '../../assets/payment-qr.jpg';
 import { paymentInfo } from '../../data/appData';
 
 function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
+  const defaultTransferContent = authUser?.depositCode ? `NAP ${authUser.depositCode}` : paymentInfo.transferContent;
+  const [qrSrc, setQrSrc] = useState('/payment-qr.jpg');
   const [quote, setQuote] = useState(null);
   const [depositAmount, setDepositAmount] = useState('');
-  const [transferContent, setTransferContent] = useState('');
+  const [transferContent, setTransferContent] = useState(defaultTransferContent);
   const [proofImageUrl, setProofImageUrl] = useState('');
   const [message, setMessage] = useState('');
+  const [copyMessage, setCopyMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,6 +35,10 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
 
     loadQuote();
   }, [authUser?.token, orderDraft]);
+
+  useEffect(() => {
+    setTransferContent(defaultTransferContent);
+  }, [defaultTransferContent]);
 
   async function handleCreateOrder() {
     setLoading(true);
@@ -67,13 +74,26 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
       });
       setMessage('Đã gửi yêu cầu nạp tiền, chờ admin duyệt.');
       setDepositAmount('');
-      setTransferContent('');
+      setTransferContent(defaultTransferContent);
       setProofImageUrl('');
     } catch (error) {
       setMessage(error.message);
     } finally {
       setLoading(false);
     }
+  }
+
+  async function handleCopy(text, label) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyMessage(`Đã copy ${label}`);
+    } catch (error) {
+      setCopyMessage('Không thể copy tự động. Bạn vui lòng copy thủ công.');
+    }
+
+    window.setTimeout(() => {
+      setCopyMessage('');
+    }, 1800);
   }
 
   return (
@@ -110,7 +130,12 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
             </div>
             <div className="comment-boost-field">
               <label className="package-option-label">Nội dung chuyển khoản</label>
-              <input className="quantity-input" value={transferContent} onChange={(e) => setTransferContent(e.target.value)} />
+              <input
+                className="quantity-input"
+                value={transferContent}
+                onChange={(e) => setTransferContent(e.target.value)}
+                placeholder={defaultTransferContent}
+              />
             </div>
             <div className="comment-boost-field">
               <label className="package-option-label">Link ảnh bill</label>
@@ -122,14 +147,42 @@ function OrderDepositPanel({ authUser, orderDraft, onClearDraft }) {
 
         <article className="payment-card payment-card--qr">
           <div className="payment-qr-frame">
-            <img className="payment-qr-image" src={paymentQrImage} alt={`Mã QR chuyển khoản ${paymentInfo.bank}`} />
+            <img
+              className="payment-qr-image"
+              src={qrSrc}
+              alt={`Mã QR chuyển khoản ${paymentInfo.bank}`}
+              onError={() => {
+                if (qrSrc !== paymentQrImage) {
+                  setQrSrc(paymentQrImage);
+                }
+              }}
+            />
           </div>
 
           <div className="payment-qr-caption">
             <p><strong>Chủ tài khoản:</strong> {paymentInfo.accountName}</p>
             <p><strong>Số tài khoản:</strong> [{paymentInfo.accountNumber}]</p>
             <p><strong>Ngân hàng:</strong> [{paymentInfo.bank}]</p>
-            <p><strong>Nội dung chuyển khoản:</strong> {paymentInfo.transferContent}</p>
+            <p><strong>Nội dung chuyển khoản:</strong> {defaultTransferContent}</p>
+            <p><strong>Mã nạp của bạn:</strong> {authUser?.depositCode || 'Chưa có mã'}</p>
+
+            <div className="payment-copy-actions">
+              <button
+                type="button"
+                className="payment-copy-btn"
+                onClick={() => handleCopy(paymentInfo.accountNumber, 'số tài khoản')}
+              >
+                Copy số tài khoản
+              </button>
+              <button
+                type="button"
+                className="payment-copy-btn"
+                onClick={() => handleCopy(defaultTransferContent, 'nội dung chuyển khoản')}
+              >
+                Copy nội dung CK
+              </button>
+            </div>
+            {copyMessage ? <p className="payment-copy-note">{copyMessage}</p> : null}
           </div>
         </article>
       </div>
