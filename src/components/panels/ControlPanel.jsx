@@ -43,7 +43,7 @@ function ControlPanel({ authUser, onNavigate }) {
       <div className="panel-heading">
         <p className="panel-label">Control panel</p>
         <h2>Bảng điều khiển nhanh cho dịch vụ và đơn hàng</h2>
-        <p className="service-detail-subtitle">Giao diện gom các lối vào chính giống cấu trúc trang gốc.</p>
+        <p className="service-detail-subtitle">Giao diện gomm các lối vào chính giống cấu trúc trang gốc.</p>
       </div>
 
       <div className="control-panel-banner">
