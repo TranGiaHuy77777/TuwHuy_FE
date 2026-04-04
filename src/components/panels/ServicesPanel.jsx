@@ -346,6 +346,111 @@ const webTrafficNoticeMap = {
   ],
 };
 
+const twitterNoticeMap = {
+  'twitter-like': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-follow': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-views': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-retweets': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-mentions': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-poll-votes': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-impression': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-tweet-views': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitter-space-listeners': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG TWITTER/ FOLLOW TWITTER',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+};
+
+const twitchNoticeMap = {
+  'twitch-followers': [
+    'CẦN MỞ CÔNG KHAI KÊNH/VIDEO TWITCH',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+  'twitch-live-views': [
+    'CẦN MỞ CÔNG KHAI KÊNH/VIDEO TWITCH',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+};
+
+const discordNoticeMap = {
+  'discord-member-channel': [
+    'CẦN MỞ CÔNG KHAI BÀI ĐĂNG',
+    'LẤY ĐÚNG LINK (LẤY SAI LINK KHÔNG HOÀN TIỀN)',
+    'Nghiêm cấm buff các đơn có nội dung vi phạm pháp luật, chính trị, đồi trụy. Nếu cố tình buff bạn sẽ bị trừ hết tiền và ban khỏi hệ thống vĩnh viễn, và phải chịu hoàn toàn trách nhiệm trước pháp luật.',
+    'Nếu đơn đang chạy trên hệ thống mà bạn vẫn mua ở các hệ thống bên khác, nếu có tình trạng hụt, thiếu số lượng giữa 2 bên thì sẽ không được xử lí.',
+    'Đơn cài sai thông tin hoặc lỗi trong quá trình tăng hệ thống sẽ không hoàn lại tiền.',
+    'Nếu gặp lỗi hãy nhắn tin hỗ trợ phía bên phải góc màn hình hoặc vào mục liên hệ hỗ trợ để được hỗ trợ tốt nhất.',
+  ],
+};
+
 function normalizeText(value) {
   return value
     .toLowerCase()
@@ -430,6 +535,18 @@ function isGoogleFunction(itemId = '') {
 
 function isWebTrafficFunction(itemId = '') {
   return itemId.startsWith('web-');
+}
+
+function isTwitterFunction(itemId = '') {
+  return itemId.startsWith('twitter-');
+}
+
+function isTwitchFunction(itemId = '') {
+  return itemId.startsWith('twitch-');
+}
+
+function isDiscordFunction(itemId = '') {
+  return itemId.startsWith('discord-');
 }
 
 export function ServiceCatalogBadge({ section, size = 'md' }) {
@@ -546,6 +663,12 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
   const googleNotices = googleNoticeMap[activeItemId] || [];
   const isWebTrafficItem = isWebTrafficFunction(activeItemId);
   const webTrafficNotices = webTrafficNoticeMap[activeItemId] || [];
+  const isTwitterItem = isTwitterFunction(activeItemId);
+  const twitterNotices = twitterNoticeMap[activeItemId] || [];
+  const isTwitchItem = isTwitchFunction(activeItemId);
+  const twitchNotices = twitchNoticeMap[activeItemId] || [];
+  const isDiscordItem = isDiscordFunction(activeItemId);
+  const discordNotices = discordNoticeMap[activeItemId] || [];
 
   return (
     <section className="panel-screen service-catalog-panel">
@@ -706,6 +829,33 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
                                 ))}
                               </ul>
                             </div>
+                          ) : isTwitterItem ? (
+                            <div className="service-policy-note service-policy-note--soft" role="note" aria-label="Lưu ý điều khoản dịch vụ Twitter">
+                              <p className="service-policy-title">Lưu ý</p>
+                              <ul className="service-policy-list">
+                                {twitterNotices.map((line) => (
+                                  <li key={line}>{line}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : isTwitchItem ? (
+                            <div className="service-policy-note service-policy-note--soft" role="note" aria-label="Lưu ý điều khoản dịch vụ Twitch">
+                              <p className="service-policy-title">Lưu ý</p>
+                              <ul className="service-policy-list">
+                                {twitchNotices.map((line) => (
+                                  <li key={line}>{line}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : isDiscordItem ? (
+                            <div className="service-policy-note service-policy-note--soft" role="note" aria-label="Lưu ý điều khoản dịch vụ Discord">
+                              <p className="service-policy-title">Lưu ý</p>
+                              <ul className="service-policy-list">
+                                {discordNotices.map((line) => (
+                                  <li key={line}>{line}</li>
+                                ))}
+                              </ul>
+                            </div>
                           ) : (
                             <div className="service-policy-note" role="note" aria-label="Lưu ý điều khoản dịch vụ">
                               <p className="service-policy-title">Lưu ý điều khoản trước khi tạo tiến trình:</p>
@@ -720,7 +870,7 @@ function ServicesPanel({ highlightedId, onSelectServiceItem }) {
                           )}
                         </div>
                         <div className="service-package-options">
-                          {!isTikTokItem && !isBigoItem && !isThreadsItem && !isYouTubeItem && !isShopeeItem && !isGoogleItem && !isWebTrafficItem ? (
+                          {!isTikTokItem && !isBigoItem && !isThreadsItem && !isYouTubeItem && !isShopeeItem && !isGoogleItem && !isWebTrafficItem && !isTwitterItem && !isTwitchItem && !isDiscordItem ? (
                             <div className="package-option-group">
                               <label className="package-option-label">Cấm xúc</label>
                               <div className="emotion-buttons">
