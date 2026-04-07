@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { FaFacebookMessenger } from 'react-icons/fa6';
-import clientLogo from './assets/z7702200087436_282dc490fc62d5f194cf33e1eaa232f3.jpg';
+import clientLogo from './assets/logo11.jpg';
 import pageCoverImage from './assets/z7702200089031_9744637952ef32b5d59114e2200cb6c8.jpg';
 import UiIcon from './components/icons/UiIcon';
 import CaseStudyPanel from './components/panels/CaseStudyPanel';
