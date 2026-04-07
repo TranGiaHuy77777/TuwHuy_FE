@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { FaFacebookMessenger } from 'react-icons/fa6';
-import clientLogo from './assets/client-logo.svg';
+import clientLogo from './assets/z7702200087436_282dc490fc62d5f194cf33e1eaa232f3.jpg';
+import pageCoverImage from './assets/z7702200089031_9744637952ef32b5d59114e2200cb6c8.jpg';
 import UiIcon from './components/icons/UiIcon';
 import CaseStudyPanel from './components/panels/CaseStudyPanel';
 import AccountPanel from './components/panels/AccountPanel';
@@ -319,7 +320,7 @@ function App() {
   }
 
   return (
-    <div className="page-shell">
+    <div className="page-shell" style={{ '--page-cover-image': `url(${pageCoverImage})` }}>
       <div className="ambient ambient-left" />
       <div className="ambient ambient-right" />
 

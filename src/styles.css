@@ -70,6 +70,35 @@ img {
   overflow: hidden;
 }
 
+.page-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--page-cover-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  transform: scale(1.03);
+  filter: saturate(1.08) contrast(1.02);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-shell::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 18%, rgba(220, 239, 255, 0.54), transparent 42%), linear-gradient(180deg, rgba(237, 247, 255, 0.76), rgba(226, 240, 253, 0.8));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
 .ambient {
   position: fixed;
   inset: auto;
@@ -305,16 +334,18 @@ body[data-theme='dark'] .site-footer {
 .sidebar-brand__logo {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  background: white;
-  box-shadow: inset 0 0 0 1px rgba(25, 70, 108, 0.06);
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 8px 16px rgba(20, 56, 88, 0.14);
+  overflow: hidden;
 }
 
 .sidebar-brand__logo img {
-  width: 82%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sidebar-brand strong,
@@ -994,8 +1025,17 @@ body[data-theme='dark'] .sidebar-section__title {
 }
 
 body[data-theme='dark'] .sidebar-brand__logo {
-  background: rgba(232, 243, 255, 0.08);
-  box-shadow: inset 0 0 0 1px rgba(126, 184, 221, 0.12);
+  background: rgba(16, 35, 53, 0.82);
+  box-shadow: inset 0 0 0 1px rgba(124, 188, 244, 0.18), 0 8px 16px rgba(0, 0, 0, 0.28);
+}
+
+body[data-theme='dark'] .page-shell::before {
+  opacity: 0.18;
+  filter: saturate(0.96) brightness(0.84);
+}
+
+body[data-theme='dark'] .page-shell::after {
+  background: radial-gradient(circle at 20% 18%, rgba(65, 121, 172, 0.24), transparent 45%), linear-gradient(180deg, rgba(8, 19, 29, 0.84), rgba(8, 19, 29, 0.88));
 }
 
 body[data-theme='dark'] .icon-button {
