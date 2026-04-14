@@ -1332,7 +1332,7 @@ export const tabs = [
   },
   {
     id: 'services',
-    label: 'Extra MXH',
+    label: 'Tăng tương tác Mạng Xã Hội',
     icon: 'spark',
     eyebrow: 'Extra Function',
     title: 'Danh mục tăng tương tác MXH (dịch vụ mở rộng khi khách có nhu cầu)',
