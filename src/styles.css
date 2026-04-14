@@ -55,6 +55,10 @@ body[data-theme='dark'] {
     linear-gradient(180deg, #0c1824 0%, var(--bg-main) 100%);
 }
 
+body[data-theme='light'] {
+  color-scheme: light;
+}
+
 button {
   font: inherit;
 }

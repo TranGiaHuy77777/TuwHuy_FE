@@ -28,10 +28,11 @@ import { apiRequest, getAuthToken, setAuthToken } from './services/api';
 
 function getInitialTheme() {
   if (typeof window === 'undefined') {
-    return 'light';
+    return 'dark';
   }
 
-  return window.localStorage.getItem(themeStorageKey) === 'dark' ? 'dark' : 'light';
+  const savedTheme = window.localStorage.getItem(themeStorageKey);
+  return savedTheme === 'light' ? 'light' : 'dark';
 }
 
 function getAuthModeFromPath(pathname = '') {
