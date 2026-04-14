@@ -1,32 +1,48 @@
-import clientLogo from '../../assets/client-logo.svg';
-import { caseCards, caseHeroCard } from '../../data/appData';
+import pageCoverImage from '../../assets/z7702200089031_9744637952ef32b5d59114e2200cb6c8.jpg';
+import { websiteTemplateCards, websiteTemplateCategories } from '../../data/appData';
 
 function CaseStudyPanel({ highlightedId }) {
   return (
-    <section className="panel-screen">
-      <div className="panel-heading">
-        <p className="panel-label">Case Study</p>
-        <h2>Phần này mô phỏng khu vực chia sẻ kinh nghiệm và portfolio riêng tư.</h2>
-      </div>
+    <section className="template-catalog">
+      <aside className="template-catalog__sidebar">
+        <h3>Xem theo lĩnh vực</h3>
+        <ul>
+          {websiteTemplateCategories.map((category) => (
+            <li key={category.id}>
+              <button type="button" className={`${category.id === 'all' ? 'is-active' : ''}`}>
+                {category.label} ({category.count})
+              </button>
+            </li>
+          ))}
+        </ul>
+      </aside>
 
-      <div className="case-grid">
-        <article className={`case-hero ${highlightedId === caseHeroCard.id ? 'is-highlighted' : ''}`}>
-          <div className="case-hero__logo">
-            <img src={clientLogo} alt="Tu Huy logo preview" />
-          </div>
-          <div>
-            <h3>{caseHeroCard.title}</h3>
-            <p>{caseHeroCard.description}</p>
-          </div>
-        </article>
+      <div className="template-catalog__content">
+        <div className="template-catalog__topbar">
+          <h2>273 mẫu thiết kế</h2>
+          <label className="template-sort">
+            <span>Sắp xếp theo</span>
+            <select defaultValue="newest">
+              <option value="newest">Mới nhất</option>
+              <option value="popular">Phổ biến</option>
+            </select>
+          </label>
+        </div>
 
-        {caseCards.map((item, index) => (
-          <article className={`case-card ${highlightedId === item.id ? 'is-highlighted' : ''}`} key={item.id}>
-            <span className="case-card__number">0{index + 1}</span>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
+        <div className="template-card-grid">
+          {websiteTemplateCards.map((item) => (
+            <article className={`template-card ${highlightedId === item.id ? 'is-highlighted' : ''}`} key={item.id}>
+              <div className="template-card__thumb">
+                {item.isNew ? <span className="template-badge-new">NEW</span> : null}
+                <img src={pageCoverImage} alt={item.title} />
+              </div>
+              <div className="template-card__body">
+                <h3>{item.title}</h3>
+                <p>{item.category}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

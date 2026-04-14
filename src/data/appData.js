@@ -1,34 +1,34 @@
 export const highlights = [
   {
     id: 'highlight-full-support',
-    title: 'Tăng trưởng kênh toàn diện',
-    text: 'Hỗ trợ phát triển kênh bài bản, tối ưu các chỉ số Follow - Like - Comment - Tương tác theo hướng tự nhiên và chuyên nghiệp, giúp xây dựng thương hiệu bền vững.',
+    title: 'Thiết kế website theo mục tiêu kinh doanh',
+    text: 'Nhận thiết kế landing page, website bán hàng, website giới thiệu doanh nghiệp với giao diện hiện đại, dễ dùng và tối ưu chuyển đổi.',
     icon: 'growth',
   },
   {
     id: 'highlight-multi-platform',
-    title: 'Đa nền tảng - Giá linh hoạt',
-    text: 'Nhận hỗ trợ Facebook, Instagram, TikTok, Google Review, Google Maps, YouTube và Shopee với mức giá mềm, phù hợp sinh viên và nhiều gói dịch vụ theo nhu cầu.',
+    title: 'Làm dự án IT và đồ án cho sinh viên',
+    text: 'Nhận code đồ án môn học, mini project, web/app theo đề tài với tài liệu bàn giao rõ ràng, hỗ trợ chỉnh sửa theo yêu cầu giảng viên.',
     icon: 'platforms',
   },
   {
     id: 'highlight-private-cases',
-    title: 'Uy tín - Có kết quả thực tế',
-    text: 'Đã triển khai cho nhiều page, shop và tài khoản cá nhân. Vì lý do bảo mật thông tin khách hàng, mẫu thực tế và case study chi tiết sẽ được gửi riêng khi inbox.',
+    title: 'Web/App cho startup và doanh nghiệp nhỏ',
+    text: 'Triển khai giải pháp phần mềm tinh gọn cho startup: web quản trị, booking, bán hàng, CRM mini và app vận hành nội bộ.',
     icon: 'proof',
   },
 ];
 
 export const homeSummary = {
-  badge: 'Bonus',
-  title: 'Nhận code web / app và website giới thiệu dịch vụ nhanh chóng',
-  description: 'Code nhanh website giới thiệu dịch vụ chỉ trong 5 phút. Inbox để xem mẫu thực tế, case study chi tiết và nhận báo giá ngay.',
+  badge: 'Core Service',
+  title: 'Thiết kế phần mềm theo nhu cầu: Web/App, đồ án sinh viên, giải pháp startup',
+  description: 'Tập trung xây dựng sản phẩm chạy thực tế: từ website giới thiệu, landing page, web quản trị tới mobile app và dự án học thuật.',
   points: [
-    'Tăng Follow - Like - Tương tác MXH',
-    'Facebook | TikTok | Instagram | Google | Shopee',
-    'Giá sinh viên - nhiều gói lựa chọn',
-    'Có case thật - làm cho nhiều page / shop',
-    'Nhận code web / app',
+    'Thiết kế website/landing page theo nhận diện thương hiệu',
+    'Code web/app cho startup và doanh nghiệp nhỏ',
+    'Hỗ trợ đồ án sinh viên, dự án môn học, mini project',
+    'Có tab dự án đã làm để khách tham khảo năng lực',
+    'Dịch vụ tăng tương tác MXH là gói mở rộng (Extra)',
   ],
   contactLabel: 'Liên hệ trực tiếp',
   contactValue: '0938987703 - Tư Huy',
@@ -1230,75 +1230,152 @@ export const platformCards = [
 
 export const caseCards = [
   {
-    id: 'case-many-pages',
-    title: 'Đã triển khai nhiều page',
-    description: 'Từng hỗ trợ nhiều page bán hàng, shop online và cả tài khoản cá nhân ở nhiều nhóm lĩnh vực khác nhau.',
+    id: 'case-saas-admin',
+    title: 'Web quản lý đơn hàng cho startup bán lẻ',
+    description: 'Thiết kế dashboard quản trị đơn, khách hàng, trạng thái thanh toán và báo cáo doanh thu theo tuần/tháng.',
   },
   {
-    id: 'case-private-study',
-    title: 'Case study gửi riêng',
-    description: 'Do ưu tiên quyền riêng tư của khách hàng nên ảnh mẫu, số liệu và ví dụ thực tế sẽ được gửi qua inbox riêng.',
+    id: 'case-booking-service',
+    title: 'Website booking dịch vụ theo lịch',
+    description: 'Xây dựng hệ thống đặt lịch trực tuyến có trang khách hàng, admin quản lý lịch hẹn và xác nhận tự động.',
   },
   {
-    id: 'case-flexible-delivery',
-    title: 'Nhận làm linh hoạt',
-    description: 'Có thể nhận theo mục tiêu cụ thể như tăng tương tác, làm đẹp profile hoặc hỗ trợ chỉ số cho từng nền tảng.',
+    id: 'case-student-capstone',
+    title: 'Đồ án sinh viên: web/app theo đề tài',
+    description: 'Hỗ trợ từ phân tích yêu cầu, code chức năng chính, viết tài liệu báo cáo đến demo thuyết trình.',
   },
 ];
 
 export const caseHeroCard = {
-  id: 'case-private-portfolio',
-  title: 'Portfolio sẽ gửi qua inbox',
-  description: 'Để đảm bảo riêng tư cho khách hàng, ảnh mẫu và chi tiết case study có thể gửi riêng khi cần.',
+  id: 'case-public-portfolio',
+  title: 'Dự án đã làm: Web/App triển khai thực tế',
+  description: 'Khách hàng có thể xem nhanh các nhóm dự án tiêu biểu để đánh giá phong cách thiết kế và năng lực triển khai.',
 };
+
+export const websiteTemplateCategories = [
+  { id: 'all', label: 'Tất cả', count: 273 },
+  { id: 'restaurant', label: 'Mẫu website Nhà hàng', count: 49 },
+  { id: 'ecommerce', label: 'Mẫu website Bán hàng', count: 118 },
+  { id: 'travel', label: 'Mẫu website Du lịch', count: 12 },
+  { id: 'real-estate', label: 'Mẫu website Bất động sản', count: 20 },
+  { id: 'fashion', label: 'Mẫu website Thời trang', count: 14 },
+  { id: 'education', label: 'Mẫu website Giáo dục', count: 31 },
+  { id: 'clinic', label: 'Mẫu website Y tế', count: 14 },
+];
+
+export const websiteTemplateCards = [
+  { id: 'tpl-visago', title: 'Website dịch vụ visa quốc tế - VISAGO', category: 'Mẫu website Du lịch', isNew: true },
+  { id: 'tpl-housekeeping', title: 'Website Dịch vụ giúp việc nhà', category: 'Mẫu website Bán hàng', isNew: false },
+  { id: 'tpl-clinic', title: 'Website phòng khám sản nhi Tâm An', category: 'Mẫu website Y tế', isNew: true },
+  { id: 'tpl-cosmetic', title: 'Website mỹ phẩm thương hiệu riêng', category: 'Mẫu website Bán hàng', isNew: false },
+  { id: 'tpl-school', title: 'Website giới thiệu trường học chất lượng cao', category: 'Mẫu website Giáo dục', isNew: false },
+  { id: 'tpl-real-estate', title: 'Website môi giới bất động sản cao cấp', category: 'Mẫu website Bất động sản', isNew: false },
+];
+
+export const portfolioProjects = [
+  {
+    id: 'portfolio-edu-lms',
+    name: 'EduLMS Student Portal',
+    type: 'Web App',
+    stack: 'React, Node.js, MongoDB',
+    summary: 'Cổng học tập cho sinh viên với quản lý khóa học, bài tập, điểm số và thông báo realtime.',
+  },
+  {
+    id: 'portfolio-startup-crm',
+    name: 'Startup CRM Mini',
+    type: 'SaaS Dashboard',
+    stack: 'React, Express, PostgreSQL',
+    summary: 'Quản lý pipeline khách hàng, lịch chăm sóc và báo cáo hiệu suất cho đội sales nhỏ.',
+  },
+  {
+    id: 'portfolio-coffee-pos',
+    name: 'Cafe POS & Order',
+    type: 'Web + Mobile',
+    stack: 'Next.js, Firebase, Flutter',
+    summary: 'Hệ thống bán hàng và đặt món cho quán cafe gồm giao diện thu ngân, bếp và app khách đặt hàng.',
+  },
+  {
+    id: 'portfolio-capstone-ecommerce',
+    name: 'Capstone E-commerce',
+    type: 'Đồ án sinh viên',
+    stack: 'Vue, Laravel, MySQL',
+    summary: 'Dự án đồ án thương mại điện tử có phân quyền admin, giỏ hàng, thanh toán và quản lý vận chuyển.',
+  },
+  {
+    id: 'portfolio-booking-clinic',
+    name: 'Clinic Booking System',
+    type: 'Business Website',
+    stack: 'React, NestJS, SQL Server',
+    summary: 'Website doanh nghiệp y tế với đặt lịch khám, quản lý khung giờ bác sĩ và nhắc lịch tự động.',
+  },
+  {
+    id: 'portfolio-interaction-extra',
+    name: 'Social Interaction Booster (Extra)',
+    type: 'Gói mở rộng',
+    stack: 'Facebook, TikTok, Instagram, YouTube',
+    summary: 'Danh mục tăng tương tác MXH được giữ ở mục Extra Function cho khách có nhu cầu riêng.',
+  },
+];
 
 export const tabs = [
   {
     id: 'overview',
-    label: 'Tổng quan',
+    label: 'Giới thiệu',
     icon: 'grid',
-    eyebrow: 'Social Growth Service',
-    title: 'Dịch vụ phát triển mạng xã hội chuyên nghiệp',
+    eyebrow: 'BizWebsite Service',
+    title: 'Dịch vụ thiết kế website theo yêu cầu cho doanh nghiệp và startup',
     stats: [
-      { label: 'Hỗ trợ', value: 'MXH + Web/App' },
-      { label: 'Nền tảng', value: '06+ kênh' },
-      { label: 'Liên hệ', value: '0938987703 - Zalo' },
+      { label: 'Kinh nghiệm', value: '19+' },
+      { label: 'Thương hiệu lớn', value: '200+' },
+      { label: 'Dự án triển khai', value: '5000+' },
     ],
   },
   {
     id: 'services',
-    label: 'Dịch vụ',
+    label: 'Extra MXH',
     icon: 'spark',
-    eyebrow: 'Service Catalog',
-    title: 'Danh mục dịch vụ chi tiết theo từng nền tảng',
+    eyebrow: 'Extra Function',
+    title: 'Danh mục tăng tương tác MXH (dịch vụ mở rộng khi khách có nhu cầu)',
     stats: [
       { label: 'Danh mục', value: '20 nền tảng' },
-      { label: 'Bổ sung', value: 'Other Function' },
-      { label: 'Hiển thị', value: 'Catalog UI' },
+      { label: 'Mục tiêu', value: 'Tăng chỉ số MXH' },
+      { label: 'Nhóm', value: 'Gói mở rộng' },
     ],
   },
   {
     id: 'platforms',
-    label: 'Nền tảng',
+    label: 'Câu chuyện thành công',
     icon: 'layers',
-    eyebrow: 'Platform Coverage',
-    title: 'Các nền tảng đang nhận hỗ trợ',
+    eyebrow: 'Success Story',
+    title: 'Các case triển khai phần mềm và website đạt hiệu quả thực tế',
     stats: [
-      { label: 'Facebook', value: 'Có' },
-      { label: 'TikTok', value: 'Có' },
-      { label: 'Google', value: 'Có' },
+      { label: 'Startup', value: 'Có' },
+      { label: 'Doanh nghiệp SME', value: 'Có' },
+      { label: 'Đồ án sinh viên', value: 'Có' },
     ],
   },
   {
     id: 'case-study',
-    label: 'Case Study',
+    label: 'Kho giao diện',
     icon: 'proof',
-    eyebrow: 'Private Portfolio',
-    title: 'Case Study và kinh nghiệm triển khai',
+    eyebrow: 'Template Library',
+    title: 'Kho mẫu thiết kế website theo ngành nghề để tham khảo nhanh',
     stats: [
-      { label: 'Portfolio', value: 'Inbox riêng' },
-      { label: 'Khách hàng', value: 'Nhiều page' },
-      { label: 'Hiển thị', value: 'Private' },
+      { label: 'Mẫu giao diện', value: '273+' },
+      { label: 'Ngành nghề', value: '08+' },
+      { label: 'Cập nhật', value: 'Liên tục' },
+    ],
+  },
+  {
+    id: 'consultation',
+    label: 'Đặt lịch tư vấn',
+    icon: 'chat',
+    eyebrow: 'Consultation Form',
+    title: 'Đặt lịch tư vấn và để lại thông tin dự án',
+    stats: [
+      { label: 'Hình thức', value: 'Form online' },
+      { label: 'Phản hồi', value: 'Trong 24h' },
+      { label: 'Trạng thái', value: 'Đang nhận lịch' },
     ],
   },
   {

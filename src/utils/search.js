@@ -4,6 +4,7 @@ import {
   highlights,
   homeSummary,
   paymentInfo,
+  portfolioProjects,
   platformCards,
   serviceCatalogSections,
   tabs,
@@ -37,7 +38,7 @@ const searchEntries = [
     tabLabel: tabLookup.overview.label,
     title: item.title,
     description: item.text,
-    keywords: `tong quan overview ho tro case study ${index + 1}`,
+    keywords: `tong quan overview thiet ke web app do an startup ${index + 1}`,
   })),
   {
     id: 'overview-bonus-web-app',
@@ -46,7 +47,7 @@ const searchEntries = [
     tabLabel: tabLookup.overview.label,
     title: homeSummary.title,
     description: `${homeSummary.description} ${homeSummary.contactValue}`,
-    keywords: `web app code website bonus ${homeSummary.points.join(' ')}`,
+    keywords: `thiet ke website web app do an sinh vien startup software ${homeSummary.points.join(' ')}`,
   },
   {
     id: 'payment-qr',
@@ -108,7 +109,17 @@ const searchEntries = [
     tabLabel: tabLookup['case-study'].label,
     title: item.title,
     description: item.description,
-    keywords: 'portfolio case study khach hang',
+    keywords: 'portfolio du an da lam website web app khach hang',
+  })),
+  ...portfolioProjects.map((project) => ({
+    id: project.id,
+    highlightId: project.id,
+    tabId: 'case-study',
+    group: 'Portfolio',
+    tabLabel: tabLookup['case-study'].label,
+    title: project.name,
+    description: `${project.type} • ${project.stack} • ${project.summary}`,
+    keywords: `du an ${project.type} ${project.stack} ${project.name}`,
   })),
 ];
 

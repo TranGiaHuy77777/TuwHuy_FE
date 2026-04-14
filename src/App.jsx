@@ -1,6 +1,5 @@
 ﻿import { useEffect, useRef, useState } from 'react';
 import { FaFacebookMessenger } from 'react-icons/fa6';
-import clientLogo from './assets/logo11.jpg';
 import pageCoverImage from './assets/z7702200089031_9744637952ef32b5d59114e2200cb6c8.jpg';
 import UiIcon from './components/icons/UiIcon';
 import CaseStudyPanel from './components/panels/CaseStudyPanel';
@@ -11,15 +10,15 @@ import AdminPanel from './components/panels/AdminPanel';
 import OverviewPanel from './components/panels/OverviewPanel';
 import OrderDepositPanel from './components/panels/OrderDepositPanel';
 import PlatformsPanel from './components/panels/PlatformsPanel';
+import ConsultationPanel from './components/panels/ConsultationPanel';
 import SearchResultsPanel from './components/panels/SearchResultsPanel';
 import ServiceDetailPanel from './components/panels/ServiceDetailPanel';
-import ServicesPanel, { ServiceCatalogBadge, ServiceCatalogOtherIcon } from './components/panels/ServicesPanel';
+import ServicesPanel, { ServiceCatalogBadge } from './components/panels/ServicesPanel';
 import {
   homeSummary,
   contactSupportLinks,
   otherFunctionLinks,
   serviceCatalogSections,
-  sidebarUserLinks,
   tabs,
   themeStorageKey,
 } from './data/appData';
@@ -45,7 +44,7 @@ function getAuthModeFromPath(pathname = '') {
 
 function getInitialAuthRouteState() {
   if (typeof window === 'undefined') {
-    return { activeTab: 'services', authMode: 'login' };
+    return { activeTab: 'overview', authMode: 'login' };
   }
 
   const routeAuthMode = getAuthModeFromPath(window.location.pathname);
@@ -53,7 +52,7 @@ function getInitialAuthRouteState() {
     return { activeTab: 'auth', authMode: routeAuthMode };
   }
 
-  return { activeTab: 'services', authMode: 'login' };
+  return { activeTab: 'overview', authMode: 'login' };
 }
 
 function App() {
@@ -65,9 +64,11 @@ function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
   const [isContactsMenuOpen, setIsContactsMenuOpen] = useState(false);
+  const [isExtraFunctionsOpen, setIsExtraFunctionsOpen] = useState(false);
   const [selectedServiceItem, setSelectedServiceItem] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [pendingOrderDraft, setPendingOrderDraft] = useState(null);
+  const [pendingConsultation, setPendingConsultation] = useState(false);
   const settingsMenuRef = useRef(null);
   const contactsMenuRef = useRef(null);
 
@@ -82,7 +83,7 @@ function App() {
       { label: 'Trạng thái', value: 'Ready' },
     ],
   };
-  const sidebarTabs = tabs.filter((tab) => tab.id !== 'services');
+  const headerTabs = tabs.filter((tab) => ['overview', 'case-study', 'platforms', 'services'].includes(tab.id));
   const isDarkTheme = theme === 'dark';
 
   function updateAuthPath(mode, replace = false) {
@@ -175,6 +176,9 @@ function App() {
     }
 
     clearAuthPath();
+    if (tabId === 'services') {
+      setIsExtraFunctionsOpen(true);
+    }
     setActiveTab(tabId);
     setSearchQuery('');
     setHighlightedResultId('');
@@ -239,12 +243,21 @@ function App() {
     }
 
     if (action === 'control-panel') {
-      setActiveTab('control-panel');
+      if (authUser) setActiveTab('control-panel');
+      else openAuthScreen('login');
+    }
+
+    if (action === 'consultation') {
+      handleConsultationRequest();
     }
 
     if (action === 'top-up') {
-      setActiveTab('payment');
-      setPendingOrderDraft(null);
+      if (authUser) {
+        setActiveTab('payment');
+        setPendingOrderDraft(null);
+      } else {
+        openAuthScreen('login');
+      }
     }
 
     if (action === 'admin-panel') {
@@ -262,6 +275,7 @@ function App() {
   }
 
   function handleSidebarServiceShortcut(sectionId) {
+    setIsExtraFunctionsOpen(true);
     setActiveTab('services');
     setSearchQuery('');
     setHighlightedResultId(sectionId);
@@ -290,6 +304,21 @@ function App() {
     setSelectedServiceItem(null);
   }
 
+  function handleConsultationRequest() {
+    clearAuthPath();
+    setSearchQuery('');
+    setHighlightedResultId('');
+    setIsSettingsMenuOpen(false);
+
+    if (!authUser) {
+      setPendingConsultation(true);
+      openAuthScreen('login');
+      return;
+    }
+
+    setActiveTab('consultation');
+  }
+
   function handleBackToServices(sectionId = '') {
     clearAuthPath();
     setActiveTab('services');
@@ -304,7 +333,10 @@ function App() {
     if (nextUser?.token) {
       clearAuthPath();
       setAuthToken(nextUser.token);
-      if (authMode === 'admin' && nextUser.role === 'admin') {
+      if (pendingConsultation) {
+        setActiveTab('consultation');
+        setPendingConsultation(false);
+      } else if (authMode === 'admin' && nextUser.role === 'admin') {
         setActiveTab('admin');
       } else {
         setActiveTab('account');
@@ -325,97 +357,7 @@ function App() {
       <div className="ambient ambient-left" />
       <div className="ambient ambient-right" />
 
-      <main className="dashboard-shell">
-        <aside className="sidebar">
-          <div className="sidebar-brand">
-            <div className="sidebar-brand__logo">
-              <img src={clientLogo} alt="Tu Huy logo" />
-            </div>
-            <div>
-              <strong>Tu Huy</strong>
-              <span>Business &amp; Consultancy</span>
-            </div>
-          </div>
-
-          <div className="sidebar-scroll">
-            <nav className="sidebar-nav" aria-label="Sidebar navigation">
-              {sidebarTabs.map((item) => (
-                <button
-                  type="button"
-                  className={`sidebar-item ${activeTab === item.id ? 'is-active' : ''}`}
-                  key={item.id}
-                  onClick={() => handleTabChange(item.id)}
-                >
-                  <span className="sidebar-item__icon">
-                    <UiIcon type={item.icon} />
-                  </span>
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </nav>
-
-            <section className="sidebar-section">
-              <p className="sidebar-section__title">User Function</p>
-              <div className="sidebar-service-list">
-                {sidebarUserLinks.map((item) => (
-                  <button
-                    type="button"
-                    key={item.id}
-                    className="sidebar-item sidebar-item--ghost"
-                    onClick={() => handleSettingsAction(item.action)}
-                  >
-                    <span className="sidebar-item__icon">
-                      <UiIcon type={item.icon} />
-                    </span>
-                    <span className="sidebar-item__meta">
-                      <span>{item.label}</span>
-                      {item.comingSoon ? <small>COMING SOON. CODER đang code</small> : null}
-                    </span>
-                    {item.badge ? <span className="sidebar-item__badge">{item.badge}</span> : null}
-                    <span className="sidebar-item__chevron"></span>
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            <section className="sidebar-section">
-              <p className="sidebar-section__title">Extra Function</p>
-              <div className="sidebar-service-list">
-                {serviceCatalogSections.map((section) => (
-                  <button
-                    type="button"
-                    key={section.id}
-                    className={`sidebar-item sidebar-item--ghost ${activeTab === 'services' && highlightedResultId === section.id ? 'is-active' : ''}`}
-                    onClick={() => handleSidebarServiceShortcut(section.id)}
-                  >
-                    <ServiceCatalogBadge section={section} size="md" />
-                    <span>{section.label}</span>
-                    <span className="sidebar-item__chevron"></span>
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            <section className="sidebar-section sidebar-section--tail">
-              <p className="sidebar-section__title">Other Function</p>
-              <div className="sidebar-service-list">
-                {otherFunctionLinks.map((item) => (
-                  <button
-                    type="button"
-                    key={item.id}
-                    className="sidebar-item sidebar-item--ghost"
-                    onClick={() => setIsSettingsMenuOpen(false)}
-                  >
-                    <ServiceCatalogOtherIcon item={item} />
-                    <span>{item.label}</span>
-                    <span className="sidebar-item__chevron"></span>
-                  </button>
-                ))}
-              </div>
-            </section>
-          </div>
-        </aside>
-
+      <main className="dashboard-shell dashboard-shell--no-sidebar">
         <section className="workspace">
           <header className="workspace-header">
             <div className="workspace-header__title">
@@ -440,6 +382,9 @@ function App() {
                   </button>
                 ) : null}
               </form>
+
+              <button type="button" className="header-auth-btn" onClick={handleConsultationRequest}>Đặt lịch tư vấn</button>
+
               <button
                 type="button"
                 className="icon-button"
@@ -491,31 +436,53 @@ function App() {
                 </div>
               ) : null}
 
-              {authUser ? (
-                <div className="settings-menu" ref={settingsMenuRef}>
+              <div className="settings-menu" ref={settingsMenuRef}>
                 <button
                   type="button"
                   className={`icon-button ${isSettingsMenuOpen ? 'is-active' : ''}`}
                   onClick={handleSettingsMenuToggle}
-                  aria-label="Mở cài đặt tài khoản"
+                  aria-label="Mở menu hồ sơ người dùng"
                   aria-expanded={isSettingsMenuOpen}
                   aria-haspopup="menu"
-                  title="Cài đặt"
+                  title="Hồ sơ người dùng"
                 >
-                  <UiIcon type="settings" />
+                  <UiIcon type="account" />
                 </button>
 
                 {isSettingsMenuOpen ? (
-                  <div className="settings-dropdown" role="menu" aria-label="Cài đặt tài khoản">
-                    <button type="button" className="settings-dropdown__item is-active" onClick={() => handleSettingsAction('account-info')} role="menuitem">
+                  <div className="settings-dropdown" role="menu" aria-label="Menu hồ sơ người dùng">
+                    <button type="button" className={`settings-dropdown__item ${activeTab === 'account' ? 'is-active' : ''}`} onClick={() => handleSettingsAction('account-info')} role="menuitem">
                       <span className="settings-dropdown__item-icon"><UiIcon type="account" /></span>
-                      <span>Thông tin tài khoản</span>
+                      <span>Tài khoản</span>
                     </button>
 
-                    <button type="button" className="settings-dropdown__item" onClick={() => handleSettingsAction('top-up')} role="menuitem">
+                    <button type="button" className={`settings-dropdown__item ${activeTab === 'payment' ? 'is-active' : ''}`} onClick={() => handleSettingsAction('top-up')} role="menuitem">
                       <span className="settings-dropdown__item-icon"><UiIcon type="wallet" /></span>
                       <span>Nạp tiền tài khoản</span>
                     </button>
+
+                    <button type="button" className={`settings-dropdown__item ${activeTab === 'consultation' ? 'is-active' : ''}`} onClick={() => handleSettingsAction('consultation')} role="menuitem">
+                      <span className="settings-dropdown__item-icon"><UiIcon type="chat" /></span>
+                      <span>Đặt lịch tư vấn</span>
+                    </button>
+
+                    <button type="button" className={`settings-dropdown__item ${activeTab === 'control-panel' ? 'is-active' : ''}`} onClick={() => handleSettingsAction('control-panel')} role="menuitem">
+                      <span className="settings-dropdown__item-icon"><UiIcon type="layers" /></span>
+                      <span>Control panel</span>
+                    </button>
+
+                    {!authUser ? (
+                      <>
+                        <button type="button" className="settings-dropdown__item" onClick={() => openAuthScreen('login')} role="menuitem">
+                          <span className="settings-dropdown__item-icon"><UiIcon type="account" /></span>
+                          <span>Đăng nhập</span>
+                        </button>
+                        <button type="button" className="settings-dropdown__item" onClick={() => openAuthScreen('register')} role="menuitem">
+                          <span className="settings-dropdown__item-icon"><UiIcon type="spark" /></span>
+                          <span>Đăng ký</span>
+                        </button>
+                      </>
+                    ) : null}
 
                     <button type="button" className="settings-dropdown__item" onClick={() => handleSettingsAction('transaction-history')} role="menuitem">
                       <span className="settings-dropdown__item-icon"><UiIcon type="history" /></span>
@@ -545,18 +512,68 @@ function App() {
 
                     <div className="settings-dropdown__divider" />
 
-                    <button type="button" className="settings-dropdown__item" onClick={() => handleSettingsAction('logout')} role="menuitem">
-                      <span className="settings-dropdown__item-icon"><UiIcon type="logout" /></span>
-                      <span>Đăng xuất</span>
-                    </button>
+                    {authUser ? (
+                      <button type="button" className="settings-dropdown__item" onClick={() => handleSettingsAction('logout')} role="menuitem">
+                        <span className="settings-dropdown__item-icon"><UiIcon type="logout" /></span>
+                        <span>Đăng xuất</span>
+                      </button>
+                    ) : null}
                   </div>
                 ) : null}
                 </div>
-              ) : null}
 
               {authUser ? <span className="profile-badge">Online</span> : null}
             </div>
           </header>
+
+          <section className="header-tabs" aria-label="Chức năng chính khách hàng quan tâm">
+            {headerTabs.map((item) => (
+              <button
+                type="button"
+                className={`header-tab ${activeTab === item.id ? 'is-active' : ''}`}
+                key={item.id}
+                onClick={() => handleTabChange(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </section>
+
+          <section className="header-utility-bar" aria-label="Menu mở rộng trên header">
+            <button
+              type="button"
+              className={`header-utility-toggle ${isExtraFunctionsOpen ? 'is-open' : ''}`}
+              onClick={() => setIsExtraFunctionsOpen((state) => !state)}
+              aria-expanded={isExtraFunctionsOpen}
+            >
+              <span>Extra Function</span>
+              <span className="header-utility-toggle__chevron">▾</span>
+            </button>
+
+            <div className="header-utility-links">
+              {otherFunctionLinks.map((item) => (
+                <button type="button" key={item.id} className="header-utility-link" onClick={() => setIsSettingsMenuOpen(false)}>
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {isExtraFunctionsOpen ? (
+            <section className="header-extra-services" aria-label="Danh mục dịch vụ mở rộng">
+              {serviceCatalogSections.map((section) => (
+                <button
+                  type="button"
+                  key={section.id}
+                  className={`header-extra-service ${activeTab === 'services' && highlightedResultId === section.id ? 'is-active' : ''}`}
+                  onClick={() => handleSidebarServiceShortcut(section.id)}
+                >
+                  <ServiceCatalogBadge section={section} size="md" />
+                  <span>{section.label}</span>
+                </button>
+              ))}
+            </section>
+          ) : null}
 
           {activeTab !== 'auth' ? (
             <section className="status-grid">
@@ -573,13 +590,14 @@ function App() {
             {trimmedSearchQuery ? (
               <SearchResultsPanel query={trimmedSearchQuery} results={searchResults} onOpenResult={handleOpenResult} />
             ) : null}
-            {!trimmedSearchQuery && activeTab === 'overview' && <OverviewPanel highlightedId={highlightedResultId} />}
+            {!trimmedSearchQuery && activeTab === 'overview' && <OverviewPanel highlightedId={highlightedResultId} onConsultationRequest={handleConsultationRequest} />}
             {!trimmedSearchQuery && activeTab === 'services' && <ServicesPanel highlightedId={highlightedResultId} onSelectServiceItem={handleSelectServiceItem} />}
             {!trimmedSearchQuery && activeTab === 'service-detail' && selectedServiceItem && <ServiceDetailPanel selectedServiceItem={selectedServiceItem} onNavigateToPayment={handleNavigateToPayment} onBack={() => handleBackToServices(selectedServiceItem.sectionId)} />}
             {!trimmedSearchQuery && activeTab === 'platforms' && <PlatformsPanel highlightedId={highlightedResultId} />}
             {!trimmedSearchQuery && activeTab === 'case-study' && <CaseStudyPanel highlightedId={highlightedResultId} />}
             {!trimmedSearchQuery && activeTab === 'control-panel' && <ControlPanel authUser={authUser} onNavigate={setActiveTab} />}
             {!trimmedSearchQuery && activeTab === 'payment' && <OrderDepositPanel authUser={authUser} orderDraft={pendingOrderDraft} onClearDraft={() => setPendingOrderDraft(null)} />}
+            {!trimmedSearchQuery && activeTab === 'consultation' && <ConsultationPanel authUser={authUser} />}
             {!trimmedSearchQuery && activeTab === 'auth' && <AuthPanel mode={authMode} onModeChange={handleAuthModeChange} onAuthChange={handleAuthChange} />}
             {!trimmedSearchQuery && activeTab === 'account' && <AccountPanel authUser={authUser} onLogout={handleLogout} />}
             {!trimmedSearchQuery && activeTab === 'admin' && <AdminPanel authUser={authUser} />}
