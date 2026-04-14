@@ -1344,7 +1344,7 @@ export const tabs = [
   },
   {
     id: 'platforms',
-    label: 'Câu chuyện thành công',
+    label: 'Dịch vụ làm hộ sinh viên',
     icon: 'layers',
     eyebrow: 'Success Story',
     title: 'Các case triển khai phần mềm và website đạt hiệu quả thực tế',
