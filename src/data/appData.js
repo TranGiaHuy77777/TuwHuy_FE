@@ -1264,12 +1264,48 @@ export const websiteTemplateCategories = [
 ];
 
 export const websiteTemplateCards = [
-  { id: 'tpl-visago', title: 'Website dịch vụ visa quốc tế - VISAGO', category: 'Mẫu website Du lịch', isNew: true },
-  { id: 'tpl-housekeeping', title: 'Website Dịch vụ giúp việc nhà', category: 'Mẫu website Bán hàng', isNew: false },
-  { id: 'tpl-clinic', title: 'Website phòng khám sản nhi Tâm An', category: 'Mẫu website Y tế', isNew: true },
-  { id: 'tpl-cosmetic', title: 'Website mỹ phẩm thương hiệu riêng', category: 'Mẫu website Bán hàng', isNew: false },
-  { id: 'tpl-school', title: 'Website giới thiệu trường học chất lượng cao', category: 'Mẫu website Giáo dục', isNew: false },
-  { id: 'tpl-real-estate', title: 'Website môi giới bất động sản cao cấp', category: 'Mẫu website Bất động sản', isNew: false },
+  { 
+    id: 'tpl-visago', 
+    title: 'Website dịch vụ visa quốc tế - VISAGO', 
+    category: 'Mẫu website Du lịch', 
+    isNew: true,
+    thumbImage: 'https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?w=600&q=80'
+  },
+  { 
+    id: 'tpl-housekeeping', 
+    title: 'Website Dịch vụ giúp việc nhà', 
+    category: 'Mẫu website Bán hàng', 
+    isNew: false,
+    thumbImage: 'https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?w=600&q=80'
+  },
+  { 
+    id: 'tpl-clinic', 
+    title: 'Website phòng khám sản nhi Tâm An', 
+    category: 'Mẫu website Y tế', 
+    isNew: true,
+    thumbImage: 'https://images.pexels.com/photos/7974357/pexels-photo-7974357.jpeg?w=600&q=80'
+  },
+  { 
+    id: 'tpl-cosmetic', 
+    title: 'Website mỹ phẩm thương hiệu riêng', 
+    category: 'Mẫu website Bán hàng', 
+    isNew: false,
+    thumbImage: 'https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?w=600&q=80'
+  },
+  { 
+    id: 'tpl-school', 
+    title: 'Website giới thiệu trường học chất lượng cao', 
+    category: 'Mẫu website Giáo dục', 
+    isNew: false,
+    thumbImage: 'https://images.pexels.com/photos/8148206/pexels-photo-8148206.jpeg?w=600&q=80'
+  },
+  { 
+    id: 'tpl-real-estate', 
+    title: 'Website môi giới bất động sản cao cấp', 
+    category: 'Mẫu website Bất động sản', 
+    isNew: false,
+    thumbImage: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?w=600&q=80'
+  },
 ];
 
 export const portfolioProjects = [

@@ -1567,6 +1567,7 @@ body[data-theme='dark'] .overview-summary-point {
 .template-card__thumb {
   position: relative;
   height: 160px;
+  background: linear-gradient(135deg, rgba(69, 106, 207, 0.1) 0%, rgba(100, 150, 255, 0.05) 100%);
 }
 
 .template-card__thumb img {
